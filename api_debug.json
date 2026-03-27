@@ -1,0 +1,14 @@
+{
+  "temperature": 31.4,
+  "humidity": 78.4,
+  "wind_speed": 13.5,
+  "health_score": 93.0,
+  "current_price": 18.4,
+  "grain_count": 244,
+  "grain_unit": "Grains/Panicle",
+  "soil_moisture": 88.2,
+  "soil_ph": 6.13,
+  "water_need": 7.8,
+  "ai_status": "Analyzing...",
+  "last_updated": "20:26:29"
+}

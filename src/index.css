@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: rgba(203, 213, 225, 0.5);
+  --accent-glow: rgba(34, 197, 94, 0.05);
+}
+
+.dark {
+  --bg-page: #0f172a;
+  --bg-card: #1e293b;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-color: rgba(51, 65, 85, 0.5);
+  --accent-glow: rgba(34, 197, 94, 0.15);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    @apply antialiased transition-colors duration-300;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: var(--bg-card);
+    @apply backdrop-blur-lg rounded-2xl border border-transparent shadow-xl overflow-hidden;
+    border-color: var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(34, 197, 94, 0.4);
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .dark .glass-card:hover {
+    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.15), 0 0 60px rgba(34, 197, 94, 0.05);
+  }
+
+  .glow-amber {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.15), 0 0 60px rgba(245, 158, 11, 0.05);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.15), 0 0 60px rgba(239, 68, 68, 0.05);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 0 60px rgba(59, 130, 246, 0.05);
+  }
+
+  .stat-card {
+    @apply glass-card p-6 relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color, #22c55e), transparent);
+    opacity: 0.7;
+  }
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700/60 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-countUp {
+  animation: countUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #22c55e, #4ade80, #86efac);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* NDVI gradient map */
+.ndvi-gradient {
+  background: linear-gradient(135deg,
+      #22c55e 0%, #22c55e 30%,
+      #84cc16 35%, #eab308 45%,
+      #f59e0b 55%, #ef4444 70%,
+      #dc2626 100%);
+}
+
+/* Weather card gradients */
+.weather-sunny {
+  background: linear-gradient(135deg, #0f172a, #1e3a5f);
+}
+
+.weather-rainy {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* Upload dropzone */
+.upload-zone {
+  @apply border-2 border-dashed border-slate-600 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300;
+}
+
+.upload-zone:hover {
+  @apply border-agrigreen-500 bg-agrigreen-500/5;
+}
+
+.upload-zone.active {
+  @apply border-agrigreen-400 bg-agrigreen-500/10;
+}
+
+/* ============================================
+   AgriBot Chatbot Styles
+   ============================================ */
+
+.chatbot-panel {
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.97), rgba(30, 41, 59, 0.97));
+  backdrop-filter: blur(20px);
+}
+
+.chatbot-header {
+  background: linear-gradient(135deg, rgba(22, 101, 52, 0.3), rgba(15, 23, 42, 0.9));
+  border-bottom: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.chat-bubble-user {
+  @apply px-4 py-2.5 rounded-2xl rounded-br-md;
+  background: linear-gradient(135deg, #166534, #15803d);
+  color: #f0fdf4;
+  box-shadow: 0 4px 12px rgba(22, 101, 52, 0.3);
+}
+
+.chat-bubble-bot {
+  @apply px-4 py-2.5 rounded-2xl rounded-bl-md;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  color: #e2e8f0;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.5);
+  border-radius: 10px;
+}
+
+.chatbot-input-area {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+/* Typing indicator dots */
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #4ade80;
+  border-radius: 50%;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Chat message entry animation */
+.chat-message-enter {
+  animation: chatMsgFade 0.35s ease-out forwards;
+}
+
+@keyframes chatMsgFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
